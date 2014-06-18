@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MyroHome</title>
+  <title>|Myron Wilson|</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -12,14 +12,12 @@
     <meta name="description" content="Myron Wilson Contact Page">
     <link rel="shortcut icon" href="favicon.png">
 
-    <title>|Myron Wilson|</title>
-
     <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
     
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$.backstretch("<%= asset_path 'horsefarm_light.jpg' %>", {speed: 1000});
+			$.backstretch("<%= asset_path 'bright_squares.png' %>", {speed: 1500});
 			$('.tooltip-demo').tooltip({
       	selector: "[data-toggle=tooltip]",
       	container: "body"
@@ -38,19 +36,24 @@
     	<div class="logo">
 				<%= link_to(image_tag("http://gravatar.com/avatar/47863264f06abc66a9e55f29d2fb1651.png?s=150", :alt => "Myro", :class => "avatar"), "https://www.linkedin.com/profile/view?id=236348645") %>
     	</div>
+
+		<div class="row centered">
+			<div class="col-lg-8 col-lg-offset-2 w name">
+				<h1>Myron Wilson</h1>
+				<h2>CAD Engineer</h2>
+			</div>
+		</div>
+
 		<div class="row centered">
 			<div class="col-lg-8 col-lg-offset-2 w tooltip-demo">
 				<a data-toggle="tooltip" title="Linked In" href="https://www.linkedin.com/profile/view?id=236348645"><i class="fa fa-2x fa-linkedin-square"></i></a>
 				<a data-toggle="tooltip" title="Resume" href=""><i class="fa fa-2x fa-briefcase"></i></a>
-				<a data-toggle="tooltip" title="Email Me!" href="mailto:myronw@gmail.com"><i class="fa fa-2x fa-envelope"></i></a>
+				<a data-toggle="tooltip" title="Email" href="mailto:myronw@gmail.com"><i class="fa fa-2x fa-envelope"></i></a>
 			</div>
 		</div>
-		<div class="row centered">
-			<div class="col-lg-8 col-lg-offset-2 w name">
-				<h1>Myron Wilson</h1>
-			</div>
-		</div>
-    </div>
+
+</div>
+
     
 </body>
 </html>
