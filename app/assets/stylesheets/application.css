@@ -11,7 +11,7 @@
  *= require_self
  *= require_tree .
  *= require main.css
+ *= require font-awesome.min.css
  *= require bootstrap.min.css
- *= require font-awesome.min
  *= require static_pages.css.scss
  */
