@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require_tree .
+ *= require social-buttons.css
  *= require main.css
  *= require font-awesome.min.css
  *= require bootstrap.min.css
