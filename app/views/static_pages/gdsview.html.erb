@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= stylesheet_link_tag    "gdsview", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "gdsout", "data-turbolinks-track" => true %>
+</head>
+<body id="radialsilver">
+
+
+
+
+  <div id="canv"> 
+  <canvas id="c" width=2500 height=1500>
+    Your browser does not support the HTML5 canvas tag.
+  </canvas>
+  </div>
+
+  <div id="debugdown"></div>
+  <div id="debugdrag"></div>
+  <div id="debugup"></div>
+  <div id="debugscroll"></div> 
+
+<script type="text/javascript" defer="defer"> 
+  window.onload = function(){
+    var c=document.getElementById("c");
+    var ctx = c.getContext('2d');
+    
+    var orig_ctx = ctx.save();
+    var scale = 0.5;
+    var clickscale = 0.5;
+    var drag = false;
+    var lastX = 0;
+    var lastY = 0;
+    var newX = 0;
+    var newY = 0;
+    ctx.scale(scale,scale);
+    draw_gds(ctx);
+
+    var downhtml    = document.getElementById('debugdown');
+    var draghtml    = document.getElementById('debugdrag');
+    var dragup      = document.getElementById('debugup');
+    var debugscroll = document.getElementById('debugscroll');
+    var dragStartX = 0;
+    var dragStartY = 0;
+
+    c.addEventListener('mousedown',function(evt){
+      x = evt.offsetX || (evt.pageX - c.offsetLeft);
+      y = evt.offsetY || (evt.pageY - c.offsetTop );
+      relCanvX = (c.width/c.offsetWidth);
+      relCanvY = (c.height/c.offsetHeight);
+      dragStartX = x*relCanvX;
+      dragStartY = y*relCanvY;
+      drag = true;
+//      downhtml.innerHTML = "<table border=1><tr><td>Drag:</td><td>"+drag+"</td></tr><tr><td>DragStartX:</td><td>"+dragStartX+"</td></tr><tr><td>DragStartY:</td><td>"+dragStartY+"</td></tr></table>";
+    },false);
+    c.addEventListener('mousemove',function(evt){
+        relCanvX = (c.width/c.offsetWidth);
+        relCanvY = (c.height/c.offsetHeight);
+        xloc   = evt.offsetX || (evt.pageX - c.offsetLeft);
+        yloc   = evt.offsetY || (evt.pageY - c.offsetTop);
+        deltaX = Math.floor(xloc)*relCanvX - dragStartX;
+        deltaY = Math.floor(yloc)*relCanvY - dragStartY;
+        newX   = deltaX+lastX;
+        newY   = deltaY+lastY;
+      if (drag) {
+        c.width = c.width;
+        ctx.translate(newX,newY);
+        ctx.scale(scale,scale);
+        draw_gds(ctx);
+//        draghtml.innerHTML = "<table border=1><tr><td>DeltaX:</td><td>"+deltaX+"</td></tr><tr><td>DeltaY:</td><td>"+deltaY+"</td></tr></table>";
+      }
+//      draghtml.innerHTML = "<table border=1><tr><td>DeltaX:</td><td>"+xloc*relCanvX+"</td></tr><tr><td>DeltaY:</td><td>"+yloc*relCanvY+"</td></tr></table>";
+//      debugscroll.innerHTML = "<table border=1><tr><td>CanvX:</td><td>"+c.width+"</td></tr><tr><td>CanvY:</td><td>"+c.height+"</td></tr></table>";
+//      downhtml.innerHTML = "<table border=1><tr><td>CtxX:</td><td>"+evt.width+"</td></tr><tr><td>CtxY:</td><td>"+evt.height+"</td></tr></table>";
+
+    },false);
+    document.body.addEventListener('mouseup',function(evt){ 
+      drag = false;
+      relCanvX = (c.width/c.offsetWidth);
+      relCanvY = (c.height/c.offsetHeight);
+      lastX = newX; 
+      lastY = newY;
+//      dragup.innerHTML = "<table border=1><tr><td>ContextX:</td><td>"+lastX+"</td></tr><tr><td>ContextY:</td><td>"+lastY+"</td></tr></table>";
+    },false);
+    //********* RIGHT CLICK *********
+    window.oncontextmenu = function ()
+    {
+        scale = scale * (1/clickscale);
+        c.width = c.width;
+        ctx.scale(scale,scale);
+        draw_gds(ctx);
+        return false;     // cancel default menu
+    }
+
+    var handleScroll = function(evt){
+      var zoomin = null;
+      if (evt.wheelDelta) {
+        zoomin = (evt.wheelDelta > 0) ? true : false;
+      } else if (evt.detail) {
+        zoomin = (evt.detail     > 0) ? true : false;
+      }
+     
+      X = evt.offsetX || (evt.pageX - c.offsetLeft);
+      Y = evt.offsetY || (evt.pageY - c.offsetTop );
+      relCanvX = (c.width/c.offsetWidth);
+      relCanvY = (c.height/c.offsetHeight);
+      ptX = X*relCanvX;
+      ptY = Y*relCanvY;
+ 
+      if (zoomin == true) {
+        //set clickscale up
+        scaleFactor = clickscale;
+        transX = (lastX + ptX)/2 ;//(lastX + (ptX - lastX));
+        transY = (lastY + ptY)/2 ;//(lastY + (ptY - lastY));
+      } else {
+        scaleFactor = (1/clickscale);
+        transX = (lastX - (ptX - lastX));
+        transY = (lastY - (ptY - lastY));
+      }
+      scale *= scaleFactor; // scale in or out based on scrollwheel direction
+
+//      debugscroll.innerHTML = "<table border=1><tr><td>ScrollCursorX:</td><td>"+ptX+"</td></tr><tr><td>ScrollCursorY:</td><td>"+ptY+"</td></tr></table>";
+//      dragup.innerHTML = "<table border=1><tr><td>ContextX:</td><td>"+transX+"</td></tr><tr><td>ContextY:</td><td>"+transY+"</td></tr></table>";
+
+      c.width = c.width;
+      ctx.translate(transX,transY);
+      ctx.scale(scale,scale);
+      draw_gds(ctx);
+      lastX = transX;
+      lastY = transY;
+      return evt.preventDefault() && false;
+    };
+    c.addEventListener('DOMMouseScroll',handleScroll,false);
+    c.addEventListener('mousewheel',    handleScroll,false);
+  } 
+</script>
+
+  <a href="#" onClick="javascript:changeBG('spacegray')">SpaceGray</a>
+  <a href="#" onClick="javascript:changeBG('silver')">Silver</a>
+  <a href="#" onClick="javascript:changeBG('gold')">Gold</a>
+</body></html>
