@@ -7,8 +7,6 @@
 <body id="radialsilver">
 
 
-
-
   <div id="canv"> 
   <canvas id="c" width=2500 height=1500>
     Your browser does not support the HTML5 canvas tag.
@@ -135,7 +133,22 @@
   } 
 </script>
 
-  <a href="#" onClick="javascript:changeBG('spacegray')">SpaceGray</a>
-  <a href="#" onClick="javascript:changeBG('silver')">Silver</a>
-  <a href="#" onClick="javascript:changeBG('gold')">Gold</a>
+
+<a href="#" onClick="javascript:changeBG('silver')">
+<svg width="50" height="50" id="buttonsilver">
+<defs><radialGradient id="MyGradientSilver" fx="25%" fy="25%"><stop offset="1%" stop-color="#DDD"/><stop offset="99%" stop-color="#888"/></radialGradient></defs>
+<circle fill="url(#MyGradientSilver)" cx="25" cy="25" r="10" stroke="#777"/>
+</svg></a>
+<a href="#" onClick="javascript:changeBG('gold')">
+<svg width="50" height="50" id="buttongold">
+<defs><radialGradient id="MyGradientGold" fx="25%" fy="25%"><stop offset="1%" stop-color="#F9EA77"/><stop offset="99%" stop-color="#bca47e"/></radialGradient></defs>
+<circle fill="url(#MyGradientGold)" cx="25" cy="25" r="10" stroke="#bca47e"/>
+</svg></a>
+<a href="#" onClick="javascript:changeBG('spacegray')">
+<svg width="50" height="50" id="buttonspace">
+<defs><radialGradient id="MyGradientSpace" fx="25%" fy="25%"><stop offset="1%" stop-color="#BBB"/><stop offset="99%" stop-color="#333"/></radialGradient></defs>
+<circle fill="url(#MyGradientSpace)" cx="25" cy="25" r="10" stroke="#888"/>
+</svg></a>
+
+
 </body></html>

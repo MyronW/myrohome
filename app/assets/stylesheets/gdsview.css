@@ -36,6 +36,19 @@ background: radial-gradient(ellipse at center,  rgba(254,254,254,1) 0%,rgba(155,
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#a5a5a5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
+#buttonsilver {
+	position: absolute;
+	margin-left:20%;
+}
+#buttongold {
+	position: absolute;
+	margin-left: 48%;
+}
+#buttonspace {
+	position: absolute;
+	margin-left: 77%;
+}
+
 canvas {
 	border: 5px solid;
   border-color:  silver;
@@ -43,7 +56,6 @@ canvas {
   border-radius: 18px;
  	background: black; 
  	width: 70%;
-  #height: 80%;
- 	margin-top: 4.5%;
+ 	margin-top: 4%;
   margin-left: 15%;
 }
