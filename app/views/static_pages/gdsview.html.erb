@@ -32,7 +32,7 @@
     var newX = 0;
     var newY = 0;
     ctx.scale(scale,scale);
-    draw_gds(ctx);
+    draw_gds_updown(ctx);
 
     var downhtml    = document.getElementById('debugdown');
     var draghtml    = document.getElementById('debugdrag');
@@ -64,7 +64,7 @@
         c.width = c.width;
         ctx.translate(newX,newY);
         ctx.scale(scale,scale);
-        draw_gds(ctx);
+        draw_gds_updown(ctx);
 //        draghtml.innerHTML = "<table border=1><tr><td>DeltaX:</td><td>"+deltaX+"</td></tr><tr><td>DeltaY:</td><td>"+deltaY+"</td></tr></table>";
       }
 //      draghtml.innerHTML = "<table border=1><tr><td>DeltaX:</td><td>"+xloc*relCanvX+"</td></tr><tr><td>DeltaY:</td><td>"+yloc*relCanvY+"</td></tr></table>";
@@ -86,7 +86,7 @@
         scale = scale * (1/clickscale);
         c.width = c.width;
         ctx.scale(scale,scale);
-        draw_gds(ctx);
+        draw_gds_updown(ctx);
         return false;     // cancel default menu
     }
 
@@ -123,7 +123,7 @@
       c.width = c.width;
       ctx.translate(transX,transY);
       ctx.scale(scale,scale);
-      draw_gds(ctx);
+      draw_gds_updown(ctx);
       lastX = transX;
       lastY = transY;
       return evt.preventDefault() && false;

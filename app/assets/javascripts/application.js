@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery.backstretch.min.js
+//= require jquery.turbolinks
 //= require_tree .
