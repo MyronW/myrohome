@@ -19,11 +19,14 @@
     
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$.backstretch("<%= asset_path 'bg_blurred.jpg' %>", {speed: 1000});
-			$('.tooltip-demo').tooltip({
+     var ready;
+     ready = function() { $.backstretch("<%= asset_path 'bg_blurred.jpg' %>", {speed: 500}); };   
+     $(document).ready(ready);
+     $(document).on('page:load', ready);
+     $('.tooltip-demo').tooltip({
       	selector: "[data-toggle=tooltip]",
       	container: "body"
-   	   });
+   	  });
 	  });
 	</script>
 
@@ -54,7 +57,7 @@
 				<a data-toggle="tooltip" title="Email" href="mailto:myronw@gmail.com"><i class="fa fa-2x fa-envelope"></i></a>
 			</div>
 			<div class="col-lg-8 col-lg-offset-2 w tooltip-demo">
-      	<a data-toggle="tooltip" title="Apple Demo" href="/gdsview"><i class="fa fa-5x fa-apple"></i></a>
+      	<a data-toggle="tooltip" href="/gdsview"><i class="fa fa-5x fa-apple"></i></a>
       </div>
 		</div>
 

@@ -35,9 +35,9 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.1)
+    coffee-script-source (1.9.1.1)
     erubis (2.7.0)
-    execjs (2.5.0)
+    execjs (2.5.2)
     hike (1.2.3)
     i18n (0.7.0)
     jbuilder (1.5.3)
@@ -101,7 +101,7 @@ GEM
       polyglot (>= 0.3.1)
     turbolinks (2.5.3)
       coffee-rails
-    tzinfo (0.3.43)
+    tzinfo (0.3.44)
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)

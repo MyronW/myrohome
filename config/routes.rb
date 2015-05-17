@@ -1,6 +1,8 @@
 MyroHome::Application.routes.draw do
   get "static_pages/home"
   get "gdsview" => 'static_pages#gdsview'
+  get "gdsview2" => 'static_pages#gdsview2'
+  get "gdsview3" => 'static_pages#gdsview3'
   get "resume"  => 'static_pages#resume'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
