@@ -19,7 +19,8 @@
   <div id="debugscroll"></div> 
 
 <script type="text/javascript" defer="defer"> 
-  window.onload = function(){
+   var ready;
+   ready = function(){
     var c=document.getElementById("c");
     var ctx = c.getContext('2d');
     
@@ -131,6 +132,8 @@
     c.addEventListener('DOMMouseScroll',handleScroll,false);
     c.addEventListener('mousewheel',    handleScroll,false);
   } 
+  $(document).ready(ready);
+  $(document).on('page:load', ready);
 </script>
 
 
